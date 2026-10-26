@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Image Squeeze — Free Bulk Image Compressor (JPG, PNG, WebP) | S3eidat Tools</title>
+<meta name="description" content="Compress JPG, PNG and WebP images in bulk, right in your browser. Quality slider, WebP/AVIF output, max size, before/after compare, zip download. Nothing is uploaded.">
+<meta property="og:title" content="Image Squeeze — free, private bulk image compressor">
+<meta property="og:description" content="Shrink many images at once with a before/after compare. Runs 100% in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="image-squeeze">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Image Squeeze</h1>
+    <p>Compress JPG, PNG and WebP images in bulk. Drop them in, pick a quality, compare before and after, download. Your photos never leave your browser.</p>
+  </section>
+
+  <div class="sq-grid">
+    <section class="card stack">
+      <label class="drop" id="drop">
+        <input type="file" accept="image/*" multiple hidden>
+        <svg class="i"><use href="#i-upload"/></svg>
+        <b>Drop images here</b>
+        <span class="faint">or click to choose · you can also paste</span>
+      </label>
+
+      <div class="stack sq-set">
+        <div class="field-g">
+          <span class="lbl" id="fmt-l">Output format</span>
+          <div class="seg" id="format" role="group" aria-labelledby="fmt-l">
+            <button aria-pressed="true" data-v="keep">Keep</button>
+            <button aria-pressed="false" data-v="jpeg">JPEG</button>
+            <button aria-pressed="false" data-v="webp">WebP</button>
+            <button aria-pressed="false" data-v="avif" hidden>AVIF</button>
+          </div>
+        </div>
+        <label class="field">
+          <span class="row between"><span>Quality</span><output id="qv" class="mono">80%</output></span>
+          <input type="range" id="quality" min="5" max="100" step="1" value="80">
+        </label>
+        <label class="field">Max width / height
+          <select class="select" id="max">
+            <option value="">Keep original size</option>
+            <option value="3840">3840 px (4K)</option>
+            <option value="2560">2560 px</option>
+            <option value="1920">1920 px (Full HD)</option>
+            <option value="1280">1280 px</option>
+            <option value="1024">1024 px</option>
+            <option value="800">800 px</option>
+          </select>
+        </label>
+        <label class="check"><input type="checkbox" id="keepSmaller" checked> Keep the original if it's already smaller</label>
+        <p class="faint" id="hint">PNG is lossless, so quality only changes JPEG, WebP and AVIF. Choose WebP to shrink PNGs a lot.</p>
+      </div>
+    </section>
+
+    <section class="card stack">
+      <div class="row between">
+        <h2>Results <small id="count"></small></h2>
+        <div class="row">
+          <button class="btn ghost small" id="clear" disabled><svg class="i"><use href="#i-trash"/></svg>Clear</button>
+          <button class="btn primary small" id="zip" disabled><svg class="i"><use href="#i-download"/></svg>Download all (.zip)</button>
+        </div>
+      </div>
+
+      <div class="empty" id="empty"><b>No images yet</b>Drop a few photos on the left. They are compressed on your device with the browser's own encoder.</div>
+
+      <div id="viewer" hidden>
+        <div class="cmp checker" id="cmp">
+          <div class="cmp-in" id="cmpIn">
+            <img id="after" alt="Compressed image">
+            <img id="before" alt="Original image">
+            <span class="cmp-bar" id="bar"></span>
+            <span class="cmp-tag l">Original</span><span class="cmp-tag r">Squeezed</span>
+          </div>
+        </div>
+        <label class="field mt"><span class="sr">Compare before and after</span>
+          <input type="range" id="cmpRange" min="0" max="100" value="50" aria-label="Compare before and after">
+        </label>
+      </div>
+
+      <div class="stats" id="totals" hidden></div>
+      <ul class="sq-list" id="list"></ul>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

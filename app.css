@@ -1,0 +1,27 @@
+.sq-grid { display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 14px; align-items: start; }
+@media (max-width: 860px) { .sq-grid { grid-template-columns: minmax(0, 1fr); } }
+.lbl { font-size: 12.5px; font-weight: 600; color: var(--text-2); }
+.field-g { display: grid; gap: 6px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+#qv { color: var(--accent); font-weight: 600; }
+#hint { margin: 0; }
+
+.cmp { border-radius: 12px; border: 1px solid var(--line); display: grid; place-items: center; padding: 8px; min-height: 160px; }
+.cmp-in { position: relative; display: inline-block; line-height: 0; cursor: ew-resize; touch-action: none; user-select: none; max-width: 100%; }
+.cmp-in img { display: block; max-width: 100%; max-height: 380px; -webkit-user-drag: none; }
+.cmp-in #before { position: absolute; inset: 0; width: 100%; height: 100%; clip-path: inset(0 50% 0 0); }
+.cmp-bar { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.35); pointer-events: none; }
+.cmp-bar::after { content: ""; position: absolute; top: 50%; left: 50%; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.45); }
+.cmp-tag { position: absolute; top: 8px; padding: 3px 8px; border-radius: 999px; font: 600 11.5px/1.4 Inter, sans-serif; background: rgba(0,0,0,.6); color: #fff; pointer-events: none; }
+.cmp-tag.l { left: 8px; } .cmp-tag.r { right: 8px; }
+
+.sq-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.sq-item { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line); cursor: pointer; }
+.sq-item:hover { border-color: var(--line-strong); }
+.sq-item.is-sel { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.sq-thumb { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; flex: none; background: var(--surface-3); }
+.sq-info { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.sq-info b { font-size: 13.5px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sq-size { text-align: right; font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.sq-size b { display: block; font-size: 14px; }
+@media (max-width: 520px) { .sq-item { flex-wrap: wrap; } .sq-info { flex-basis: calc(100% - 60px); } .sq-size { text-align: left; flex: 1; } }
